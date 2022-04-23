@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище DatabaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="IdDepartment" />
+    </Key>
+    <Property Name="IdDepartment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmployeeNumber" Type="int" Nullable="false" />
+    <Property Name="WorkType" Type="int" Nullable="false" />
+    <Property Name="DepartmentAtWork" Type="nvarchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Materials">
+    <Key>
+      <PropertyRef Name="IdMaterial" />
+    </Key>
+    <Property Name="IdMaterial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InventoryNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="MaterialType" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="int" Nullable="false" />
+    <Property Name="WherePlace" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ArrivalTime" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MaterialTypes">
+    <Key>
+      <PropertyRef Name="IdMaterialType" />
+    </Key>
+    <Property Name="IdMaterialType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WorkType" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Processes">
+    <Key>
+      <PropertyRef Name="IdProcess" />
+    </Key>
+    <Property Name="IdProcess" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaterialId" Type="int" Nullable="false" />
+    <Property Name="ProductType" Type="int" Nullable="false" />
+    <Property Name="DepartmentNumber" Type="int" Nullable="false" />
+    <Property Name="StartDateWork" Type="date" Nullable="false" />
+    <Property Name="EndDateWork" Type="date" Nullable="false" />
+    <Property Name="IsCompleted" Type="nvarchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="IdProduct" />
+    </Key>
+    <Property Name="IdProduct" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InventoryNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ProductType" Type="int" Nullable="false" />
+    <Property Name="Recipient" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DeliveryDate" Type="date" Nullable="false" />
+    <Property Name="IsSent" Type="nvarchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductTypes">
+    <Key>
+      <PropertyRef Name="IdProductType" />
+    </Key>
+    <Property Name="IdProductType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UsedMaterialType" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WorkTypes">
+    <Key>
+      <PropertyRef Name="IdWorkType" />
+    </Key>
+    <Property Name="IdWorkType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="HowManyDaysInWork" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Departmen__WorkT__29572725">
+    <End Role="WorkTypes" Type="Self.WorkTypes" Multiplicity="1" />
+    <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkTypes">
+        <PropertyRef Name="IdWorkType" />
+      </Principal>
+      <Dependent Role="Departments">
+        <PropertyRef Name="WorkType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Materials__Mater__2F10007B">
+    <End Role="MaterialTypes" Type="Self.MaterialTypes" Multiplicity="1" />
+    <End Role="Materials" Type="Self.Materials" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MaterialTypes">
+        <PropertyRef Name="IdMaterialType" />
+      </Principal>
+      <Dependent Role="Materials">
+        <PropertyRef Name="MaterialType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MaterialT__WorkT__267ABA7A">
+    <End Role="WorkTypes" Type="Self.WorkTypes" Multiplicity="1" />
+    <End Role="MaterialTypes" Type="Self.MaterialTypes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkTypes">
+        <PropertyRef Name="IdWorkType" />
+      </Principal>
+      <Dependent Role="MaterialTypes">
+        <PropertyRef Name="WorkType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Processes__Depar__35BCFE0A">
+    <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+    <End Role="Processes" Type="Self.Processes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="IdDepartment" />
+      </Principal>
+      <Dependent Role="Processes">
+        <PropertyRef Name="DepartmentNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Processes__Mater__33D4B598">
+    <End Role="Materials" Type="Self.Materials" Multiplicity="1" />
+    <End Role="Processes" Type="Self.Processes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materials">
+        <PropertyRef Name="IdMaterial" />
+      </Principal>
+      <Dependent Role="Processes">
+        <PropertyRef Name="MaterialId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Processes__Produ__34C8D9D1">
+    <End Role="ProductTypes" Type="Self.ProductTypes" Multiplicity="1" />
+    <End Role="Processes" Type="Self.Processes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductTypes">
+        <PropertyRef Name="IdProductType" />
+      </Principal>
+      <Dependent Role="Processes">
+        <PropertyRef Name="ProductType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Product__Product__38996AB5">
+    <End Role="ProductTypes" Type="Self.ProductTypes" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductTypes">
+        <PropertyRef Name="IdProductType" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ProductType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProductTy__UsedM__2C3393D0">
+    <End Role="MaterialTypes" Type="Self.MaterialTypes" Multiplicity="1" />
+    <End Role="ProductTypes" Type="Self.ProductTypes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MaterialTypes">
+        <PropertyRef Name="IdMaterialType" />
+      </Principal>
+      <Dependent Role="ProductTypes">
+        <PropertyRef Name="UsedMaterialType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище DatabaseModelContainer">
+    <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Materials" EntityType="Self.Materials" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MaterialTypes" EntityType="Self.MaterialTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Processes" EntityType="Self.Processes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductTypes" EntityType="Self.ProductTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkTypes" EntityType="Self.WorkTypes" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Departmen__WorkT__29572725" Association="Self.FK__Departmen__WorkT__29572725">
+      <End Role="WorkTypes" EntitySet="WorkTypes" />
+      <End Role="Departments" EntitySet="Departments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Materials__Mater__2F10007B" Association="Self.FK__Materials__Mater__2F10007B">
+      <End Role="MaterialTypes" EntitySet="MaterialTypes" />
+      <End Role="Materials" EntitySet="Materials" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MaterialT__WorkT__267ABA7A" Association="Self.FK__MaterialT__WorkT__267ABA7A">
+      <End Role="WorkTypes" EntitySet="WorkTypes" />
+      <End Role="MaterialTypes" EntitySet="MaterialTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Processes__Depar__35BCFE0A" Association="Self.FK__Processes__Depar__35BCFE0A">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Processes" EntitySet="Processes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Processes__Mater__33D4B598" Association="Self.FK__Processes__Mater__33D4B598">
+      <End Role="Materials" EntitySet="Materials" />
+      <End Role="Processes" EntitySet="Processes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Processes__Produ__34C8D9D1" Association="Self.FK__Processes__Produ__34C8D9D1">
+      <End Role="ProductTypes" EntitySet="ProductTypes" />
+      <End Role="Processes" EntitySet="Processes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Product__Product__38996AB5" Association="Self.FK__Product__Product__38996AB5">
+      <End Role="ProductTypes" EntitySet="ProductTypes" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProductTy__UsedM__2C3393D0" Association="Self.FK__ProductTy__UsedM__2C3393D0">
+      <End Role="MaterialTypes" EntitySet="MaterialTypes" />
+      <End Role="ProductTypes" EntitySet="ProductTypes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c2be53533d0a46d090243281b3523151" Name="Diagram1">
+        <EntityTypeShape EntityType="DatabaseModel.Departments" Width="1.5" PointX="5.125" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Materials" Width="1.5" PointX="3.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.MaterialTypes" Width="1.5" PointX="3.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Processes" Width="1.5" PointX="3.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Product" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.ProductTypes" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.WorkTypes" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
+        <AssociationConnector Association="DatabaseModel.FK__Departmen__WorkT__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK__Processes__Depar__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK__Materials__Mater__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK__Processes__Mater__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK__MaterialT__WorkT__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK__ProductTy__UsedM__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK__Processes__Produ__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK__Product__Product__38996AB5" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

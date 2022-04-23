@@ -64,12 +64,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\BackToLoginCommand.cs" />
+    <Compile Include="Commands\OpenPreviousWindowCommand.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\OpenCloseWindowCommand.cs" />
     <Compile Include="ViewModels\AdminWindowViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\UserWindowViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="Views\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>

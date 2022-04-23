@@ -8,9 +8,9 @@ using System.Windows.Input;
 
 namespace Cursach1.ViewModels
 {
-    public class AdminWindowViewModel : ViewModel
+    public class UserWindowViewModel : ViewModel
     {
-        private readonly string _title = "AdminWindow";
+        private readonly string _title = "UserWindow";
 
         public ICommand BackToLogin => new OpenPreviousWindowCommand(_title);
     }
